@@ -192,7 +192,7 @@
     </choose>
     <choose>
       <when test="map.otherOperate != null">
-        ${otherOperate}
+        ${map.otherOperate}
       </when>
     </choose>
   </select>

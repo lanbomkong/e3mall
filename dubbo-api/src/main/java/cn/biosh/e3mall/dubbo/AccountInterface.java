@@ -7,5 +7,5 @@ package cn.biosh.e3mall.dubbo;
 public interface AccountInterface {
 
   // 用户密码登录
-  String login();
+  String login(String username, String password);
 }

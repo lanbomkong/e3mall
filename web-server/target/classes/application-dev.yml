@@ -1,10 +1,13 @@
 server:
   port: 8082
+  tomcat:
+    uri-encoding: utf-8
 spring:
-  mvc:
-    view:
-      prefix: /template/
-      suffix: .jsp
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password: kong
+    database: 0
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/e3mall?autoReconnect=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&serverTimezone=GMT%2B&zeroDateTimeBehavior=convertToNull
@@ -15,7 +18,7 @@ spring:
       protocol: zookeeper
       address: 192.168.25.129:2181
     application:
-      name: account-server
+      name: web-server
     protocol:
       name: dubbo
       port: 20880

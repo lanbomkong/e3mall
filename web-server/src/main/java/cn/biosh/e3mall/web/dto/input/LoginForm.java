@@ -1,5 +1,6 @@
 package cn.biosh.e3mall.web.dto.input;
 
+
 import javax.validation.constraints.NotBlank;
 
 /**
