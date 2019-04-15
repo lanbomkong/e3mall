@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <packaging>pom</packaging>
+    <modules>
+        <module>db-server</module>
+		<module>common-server</module>
+		<module>dubbo-api</module>
+        <module>account-server</module>
+		<module>web-server</module>
+	</modules>
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>cn.biosh</groupId>
+	<artifactId>e3mall</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>e3mall</name>
+	<description>Demo project for Spring Boot</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+		<mysql.version>8.0.15</mysql.version>
+		<mybatis.version>2.0.1</mybatis.version>
+		<dubbo.version>2.0.0</dubbo.version>
+		<zookeeper.version>3.5.4-beta</zookeeper.version>
+		<druid.version>1.1.12</druid.version>
+		<zkclient.version>0.1</zkclient.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

@@ -1,0 +1,21 @@
+server:
+  port: 8082
+spring:
+  mvc:
+    view:
+      prefix: /template/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/e3mall?autoReconnect=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&serverTimezone=GMT%2B&zeroDateTimeBehavior=convertToNull
+    name: root
+    password: "root"
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: 192.168.25.129:2181
+    application:
+      name: account-server
+    protocol:
+      name: dubbo
+      port: 20880

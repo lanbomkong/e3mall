@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.biosh.e3mall.dal.mapper.TbItemDescMapper">
+  <resultMap id="BaseResultMap" type="cn.biosh.e3mall.dal.model.TbItemDesc">
+    <id column="item_id" jdbcType="BIGINT" property="itemId" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.biosh.e3mall.dal.model.TbItemDesc">
+    <result column="item_desc" jdbcType="LONGVARCHAR" property="itemDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, created, updated
+  </sql>
+  <sql id="Blob_Column_List">
+    item_desc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_item_desc
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tb_item_desc
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="cn.biosh.e3mall.dal.model.TbItemDesc">
+    insert into tb_item_desc (item_id, created, updated, 
+      item_desc)
+    values (#{itemId,jdbcType=BIGINT}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}, 
+      #{itemDesc,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.biosh.e3mall.dal.model.TbItemDesc">
+    insert into tb_item_desc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="created != null">
+        created,
+      </if>
+      <if test="updated != null">
+        updated,
+      </if>
+      <if test="itemDesc != null">
+        item_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="created != null">
+        #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemDesc != null">
+        #{itemDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.biosh.e3mall.dal.model.TbItemDesc">
+    update tb_item_desc
+    <set>
+      <if test="created != null">
+        created = #{created,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updated != null">
+        updated = #{updated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="itemDesc != null">
+        item_desc = #{itemDesc,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.biosh.e3mall.dal.model.TbItemDesc">
+    update tb_item_desc
+    set created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      item_desc = #{itemDesc,jdbcType=LONGVARCHAR}
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.biosh.e3mall.dal.model.TbItemDesc">
+    update tb_item_desc
+    set created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP}
+    where item_id = #{itemId,jdbcType=BIGINT}
+  </update>
+  <!--多条件查询-->
+  <select id="getByConditions" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    tb_item_desc
+    <where>
+      <choose>
+        <when test="map.conditions != null and map.conditions.size()>0">
+          <foreach collection="map.conditions" separator="," close="" open="" item="item">
+            <choose>
+              <when test="item.operate != 'in' or item.operate != 'IN'">
+                ${item.key} ${item.operate} #{item.value}
+              </when>
+              <otherwise>
+                ${item.key} ${item.operate} ${item.value}
+              </otherwise>
+            </choose>
+          </foreach>
+        </when>
+      </choose>
+    </where>
+    <choose>
+      <when test="map.sorters != null and map.sorters.size()>0 ">
+        <foreach collection="map.sorters" item="item" open="order by" close="" separator=",">
+          ${item.column} ${item.downUp}
+        </foreach>
+      </when>
+    </choose>
+    <choose>
+      <when test="map.otherOperate != null">
+        ${otherOperate}
+      </when>
+    </choose>
+  </select>
+</mapper>
