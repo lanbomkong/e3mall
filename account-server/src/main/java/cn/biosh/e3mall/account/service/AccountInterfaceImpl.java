@@ -24,7 +24,7 @@ import org.springframework.util.StringUtils;
  */
 @Component
 @Service(interfaceClass = AccountInterface.class, version = "1.0.0")
-public class AccountInterfaceImpl implements AccountInterface {
+public class AccountInterfaceImpl implements AccountInterface<TbUser> {
 
   @Autowired
   private TbUserMapper userMapper;

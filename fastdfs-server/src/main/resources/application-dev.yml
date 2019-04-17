@@ -1,0 +1,22 @@
+server:
+  port: 8083
+spring:
+  dubbo:
+    registry:
+      protocol: zookeeper
+      address: 192.168.25.129:2181
+    application:
+      name: fastdfs-server
+    protocol:
+      name: dubbo
+      port: 20881
+fdfs:
+  tracker-list: 192.168.25.133:22122
+  so-timeout: 1500
+  connect-timeout: 600
+  pool:
+    jmx-enabled: false
+#IMAGE_SERVER_URL: http://192.168.25.133/
+#fdfs:
+#  tracker-list:
+#    - 192.168.25.133:22122

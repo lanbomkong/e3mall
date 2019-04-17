@@ -32,8 +32,3 @@ spring:
 mybatis:
   mapper-locations:
     - classpath:mappers/*.xml
-fdfs:
-  tracker-list:
-    - 129.168.25.133:22122
-  so-timeout: 1500
-  connect-timeout: 600

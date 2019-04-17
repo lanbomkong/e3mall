@@ -41,6 +41,7 @@ public class SystemExceptionHandler {
   @ExceptionHandler(value = Exception.class)
   public Object exceptionHadnle(Exception exception) {
     logger.error("exception for handle:" + exception);
+    exception.printStackTrace();
     ResultView view;
     if (exception instanceof SystemException) {
       view = new ResultView();

@@ -19,6 +19,3 @@ spring:
       address: 192.168.25.129:2181
     application:
       name: web-server
-    protocol:
-      name: dubbo
-      port: 20880
