@@ -6,7 +6,6 @@
     <modules>
         <module>db-server</module>
 		<module>common-server</module>
-		<module>dubbo-api</module>
         <module>account-server</module>
 		<module>web-server</module>
 	</modules>

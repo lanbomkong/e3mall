@@ -3,7 +3,7 @@ package cn.biosh.e3mall.dal.model;
 import cn.biosh.e3mall.dal.base.BaseModel;
 import java.util.Date;
 
-public class TbItemCat extends BaseModel {
+public class TbContentCategory extends BaseModel {
 
     private Long parentId;
 

@@ -5,7 +5,6 @@ import cn.biosh.e3mall.dal.base.BaseModel;
 import java.util.Date;
 
 public class TbUser extends BaseModel {
-    private Long id;
 
     private String username;
 
@@ -18,14 +17,6 @@ public class TbUser extends BaseModel {
     private Date created;
 
     private Date updated;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getUsername() {
         return username;

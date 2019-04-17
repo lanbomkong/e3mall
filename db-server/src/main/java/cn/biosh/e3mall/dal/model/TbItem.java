@@ -5,7 +5,6 @@ import cn.biosh.e3mall.dal.base.BaseModel;
 import java.util.Date;
 
 public class TbItem extends BaseModel {
-    private Long id;
 
     private String title;
 
@@ -26,14 +25,6 @@ public class TbItem extends BaseModel {
     private Date created;
 
     private Date updated;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

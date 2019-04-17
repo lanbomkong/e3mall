@@ -1,11 +1,14 @@
 package cn.biosh.e3mall.web.controller;
 
+import cn.biosh.e3mall.common.dubbo.AccountInterface;
 import cn.biosh.e3mall.common.interfaces.RedisOperator;
 import cn.biosh.e3mall.web.dto.input.LoginForm;
 import cn.biosh.e3mall.web.service.AccountServiceImpl;
+import com.alibaba.dubbo.config.annotation.Reference;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +29,17 @@ public class AccountController {
   @Autowired
   private RedisOperator redisOperator;
 
+  @Reference(version = "1.0.0")
+  private AccountInterface accountInterface;
+
   @PostMapping("/login")
   public String userLogin(@RequestBody @Valid LoginForm form) {
-    return accountService.login(form);
+    return accountInterface.login(form.getUsername(), form.getPassword());
+  }
+
+  @GetMapping("/users")
+  public Object getUsers() {
+    return accountInterface.getUsers(null);
   }
 
 }

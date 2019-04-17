@@ -1,6 +1,6 @@
 package cn.biosh.e3mall.web.service;
 
-import cn.biosh.e3mall.dubbo.AccountInterface;
+import cn.biosh.e3mall.common.dubbo.AccountInterface;
 import cn.biosh.e3mall.web.dto.input.LoginForm;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Service;

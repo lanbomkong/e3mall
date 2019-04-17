@@ -5,7 +5,6 @@ import cn.biosh.e3mall.dal.base.BaseModel;
 import java.util.Date;
 
 public class TbItemParam extends BaseModel {
-    private Long id;
 
     private Long itemCatId;
 
@@ -14,14 +13,6 @@ public class TbItemParam extends BaseModel {
     private Date updated;
 
     private String paramData;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getItemCatId() {
         return itemCatId;

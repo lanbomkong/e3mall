@@ -28,7 +28,7 @@ public class RedisUtil implements RedisOperator {
 
   @Override
   public String get(String key) {
-    return JsonUtil.objectToJsonString(redisTemplate.opsForValue().get(key));
+    return JsonUtil.jsonStringToObject(redisTemplate.opsForValue().get(key), String.class);
   }
 
   @Override

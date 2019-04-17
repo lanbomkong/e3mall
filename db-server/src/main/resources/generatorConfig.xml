@@ -35,7 +35,7 @@
         </javaClientGenerator>
 
 
-        <table tableName="tb_content_categroy" domainObjectName="TbContentCategroy"
+        <table tableName="tb_content_category" domainObjectName="TbContentCategory"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

@@ -5,7 +5,6 @@ import cn.biosh.e3mall.dal.base.BaseModel;
 import java.util.Date;
 
 public class TbContent extends BaseModel {
-    private Long id;
 
     private Long categoryId;
 
@@ -26,14 +25,6 @@ public class TbContent extends BaseModel {
     private Date updated;
 
     private String content;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getCategoryId() {
         return categoryId;

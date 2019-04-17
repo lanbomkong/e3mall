@@ -5,21 +5,12 @@ import cn.biosh.e3mall.dal.base.BaseModel;
 import java.util.Date;
 
 public class TbItemDesc extends BaseModel {
-    private Long itemId;
 
     private Date created;
 
     private Date updated;
 
     private String itemDesc;
-
-    public Long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
-    }
 
     public Date getCreated() {
         return created;
