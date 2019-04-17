@@ -45,7 +45,7 @@ public class AccountInterfaceImpl implements AccountInterface {
     long userId = checkUserExit(username, password);
     if (userId != 0L) {
       String userToken = StringUtil.generatorToken();
-      String token = redisOperator.get(String.format(Constant.ACCOUNT_USER_TOKEN, userId));
+      String token = redisOperator.get(String.format(Constant.ACCOUNT_USER_TOKEN, userId), String.class);
       // 删除原来的缓存
       if (!StringUtils.isEmpty(token)) {
         redisOperator.del(String.format(Constant.ACCOUNT_USER_TOKEN, userId));

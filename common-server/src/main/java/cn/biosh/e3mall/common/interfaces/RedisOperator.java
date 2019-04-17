@@ -6,7 +6,7 @@ package cn.biosh.e3mall.common.interfaces;
  */
 public interface RedisOperator {
 
-  String get(String key);
+  <T> T get(String key, Class<T> clazz);
 
   void set(String key, Object value, Long expireTime);
 
