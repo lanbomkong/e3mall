@@ -16,9 +16,17 @@ spring:
       name: dubbo
       port: 20880
   redis:
-    host: 127.0.0.1
-    port: 6379
-    password: kong
+    cluster:
+      nodes:
+        - 192.168.25.130:7001
+        - 192.168.25.130:7002
+        - 192.168.25.130:7003
+        - 192.168.25.130:7004
+        - 192.168.25.130:7005
+        - 192.168.25.130:7006
+#    host: 127.0.0.1
+#    port: 6379
+#    password: kong
     timeout: 2000
     database: 0
 mybatis:
