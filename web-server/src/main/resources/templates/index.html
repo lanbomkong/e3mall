@@ -1,20 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script>
-    function upload(){
-       alert("ok");
-    }
-
-  </script>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
 </head>
 <body>
-<input type="file" id="uploadFile" />
-<button id="uploadBtn" onclick="upload()"></button>
+	<form id="upload-form" action="http://127.0.0.1:8082/file/upload" method="post" enctype="multipart/form-data" >
+　　　<input type="file" id="uploadFile" name="uploadFile" /> <br />
+　　　<input type="submit" value="Upload" />
+</form>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package cn.biosh.e3mall.common.dubbo;
 
-import cn.biosh.e3mall.common.util.Condition;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @description
@@ -10,8 +10,8 @@ import java.util.List;
 public interface AccountInterface<T> {
 
   // 用户密码登录
-  String login(String username, String password) throws SystemException;
+  String login(String username, String password);
 
   // 获取所有用户
-  List<T> getUsers(List<Condition> conditions);
+  List<T> getUsers(Map<String,Object> map);
 }

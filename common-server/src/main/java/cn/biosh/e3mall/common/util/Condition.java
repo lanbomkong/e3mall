@@ -1,10 +1,12 @@
 package cn.biosh.e3mall.common.util;
 
+import java.io.Serializable;
+
 /**
  * @description
  * @date 2019/4/12
  */
-public class Condition {
+public class Condition implements Serializable {
 
   private String key; // 数据筛选条件字段
 

@@ -1,9 +1,9 @@
 package cn.biosh.e3mall.web.controller;
 
-import cn.biosh.e3mall.common.dubbo.FileInterface;
-import cn.biosh.e3mall.common.serialize.SysMultipartFile;
-import com.alibaba.dubbo.config.annotation.Reference;
-import java.io.IOException;
+import cn.biosh.e3mall.web.service.FileService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,21 +17,14 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/file")
 public class FileController {
 
-  @Reference(version = "1.0.0")
-  private FileInterface fileInterface;
+  private static final Logger logger = LoggerFactory.getLogger(FileController.class);
+
+  @Autowired
+  private FileService fileService;
 
   @PostMapping("/upload")
   public Object uploadFile(MultipartFile uploadFile) {
-    SysMultipartFile file = new SysMultipartFile();
-    file.setFileName(uploadFile.getOriginalFilename()
-        .substring(uploadFile.getOriginalFilename().lastIndexOf(".") + 1));
-    file.setSize(uploadFile.getSize());
-    try {
-      file.setInputStream(uploadFile.getInputStream());
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return fileInterface.uploadFile(file);
+    return fileService.uploadFile(uploadFile);
   }
 
 }

@@ -19,3 +19,9 @@ spring:
       address: 192.168.25.129:2181
     application:
       name: web-server
+fdfs:
+  tracker-list: 192.168.25.133:22122
+  so-timeout: 1500
+  connect-timeout: 600
+  pool:
+    jmx-enabled: false

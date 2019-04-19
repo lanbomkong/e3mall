@@ -5,7 +5,6 @@ import cn.biosh.e3mall.common.constants.AccountRetStubDetail;
 import cn.biosh.e3mall.common.dubbo.AccountInterface;
 import cn.biosh.e3mall.common.dubbo.SystemException;
 import cn.biosh.e3mall.common.interfaces.RedisOperator;
-import cn.biosh.e3mall.common.util.Condition;
 import cn.biosh.e3mall.common.util.StringUtil;
 import cn.biosh.e3mall.dal.mapper.TbUserMapper;
 import cn.biosh.e3mall.dal.model.TbUser;
@@ -34,9 +33,7 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
   private RedisOperator redisOperator;
 
   @Override
-  public List<TbUser> getUsers(List<Condition> conditions) {
-    Map<String,Object> map = new HashMap<>();
-    map.put("conditions", conditions);
+  public List<TbUser> getUsers(Map<String,Object> map) {
     return userMapper.getByConditions(map);
   }
 

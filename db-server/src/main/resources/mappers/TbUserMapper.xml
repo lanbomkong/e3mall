@@ -125,7 +125,7 @@
         <when test="map.conditions != null and map.conditions.size()>0">
           <foreach collection="map.conditions" separator="," close="" open="" item="item">
             <choose>
-              <when test="item.operate != 'in' or item.operate != 'IN'">
+              <when test="item.operate != 'in' and item.operate != 'IN'">
                 ${item.key} ${item.operate} #{item.value}
               </when>
               <otherwise>

@@ -2,9 +2,13 @@ package cn.biosh.e3mall.web.controller;
 
 import cn.biosh.e3mall.common.dubbo.AccountInterface;
 import cn.biosh.e3mall.common.interfaces.RedisOperator;
+import cn.biosh.e3mall.common.util.Condition;
 import cn.biosh.e3mall.web.dto.input.LoginForm;
-import cn.biosh.e3mall.web.service.AccountServiceImpl;
 import com.alibaba.dubbo.config.annotation.Reference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -24,9 +28,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AccountController {
 
   @Autowired
-  private AccountServiceImpl accountService;
-
-  @Autowired
   private RedisOperator redisOperator;
 
   @Reference(version = "1.0.0")
@@ -39,7 +40,12 @@ public class AccountController {
 
   @GetMapping("/users")
   public Object getUsers() {
-    return accountInterface.getUsers(null);
+    Map<String,Object> map = new HashMap<>();
+    List<Condition> conditions = new ArrayList<>();
+//    conditions.add(new Condition("id", 1));
+    conditions.add(new Condition("DATE_FORMAT(created, \"%Y-%m-%d\")", "CURDATE()"));
+    map.put("conditions", conditions);
+    return accountInterface.getUsers(map);
   }
 
 }

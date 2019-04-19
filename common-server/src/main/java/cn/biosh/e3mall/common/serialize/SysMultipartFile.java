@@ -1,6 +1,5 @@
 package cn.biosh.e3mall.common.serialize;
 
-import java.io.InputStream;
 import java.io.Serializable;
 
 /**
@@ -9,14 +8,18 @@ import java.io.Serializable;
  */
 public class SysMultipartFile implements  Serializable {
 
-  private InputStream inputStream;
+  private String inputStream;
 
   private Long size;
 
   private String fileName;
 
-  public void setInputStream(InputStream inputStream) {
+  public void setInputStream(String inputStream) {
     this.inputStream = inputStream;
+  }
+
+  public String getInputStream() {
+    return inputStream;
   }
 
   public void setSize(Long size) {
@@ -25,10 +28,6 @@ public class SysMultipartFile implements  Serializable {
 
   public void setFileName(String fileName) {
     this.fileName = fileName;
-  }
-
-  public InputStream getInputStream() {
-    return inputStream;
   }
 
   public Long getSize() {
