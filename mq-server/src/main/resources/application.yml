@@ -1,0 +1,9 @@
+rocketmq:
+  producer:
+    groupName: ${spring.application.name}
+    namesrvAddr: 192.168.25.129
+    default: false
+  consumer:
+    groupName: ${spring.application.name}
+    namesrvAddr: 192.168.25.129
+    default: false

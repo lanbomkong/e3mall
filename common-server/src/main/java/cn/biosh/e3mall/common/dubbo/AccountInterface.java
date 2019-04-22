@@ -14,4 +14,7 @@ public interface AccountInterface<T> {
 
   // 获取所有用户
   List<T> getUsers(Map<String,Object> map);
+
+  // 注册用户
+  void registUser(T t);
 }

@@ -3,13 +3,16 @@ package cn.biosh.e3mall.web.controller;
 import cn.biosh.e3mall.common.dubbo.AccountInterface;
 import cn.biosh.e3mall.common.interfaces.RedisOperator;
 import cn.biosh.e3mall.common.util.Condition;
+import cn.biosh.e3mall.dal.model.TbUser;
 import cn.biosh.e3mall.web.dto.input.LoginForm;
+import cn.biosh.e3mall.web.dto.input.account.RegistForm;
 import com.alibaba.dubbo.config.annotation.Reference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,6 +39,13 @@ public class AccountController {
   @PostMapping("/login")
   public String userLogin(@RequestBody @Valid LoginForm form) {
     return accountInterface.login(form.getUsername(), form.getPassword());
+  }
+
+  @PostMapping("/register")
+  public void registUser(@RequestBody @Valid RegistForm registForm) {
+    TbUser tbUser = new TbUser();
+    BeanUtils.copyProperties(registForm, tbUser);
+    accountInterface.registUser(tbUser);
   }
 
   @GetMapping("/users")

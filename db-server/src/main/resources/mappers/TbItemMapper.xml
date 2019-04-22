@@ -163,7 +163,14 @@
   <!--多条件查询-->
   <select id="getByConditions" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
-      <include refid="Base_Column_List"></include>
+    <choose>
+      <when test="map.queryField != null">
+        #{map.queryField}
+      </when>
+      <otherwise>
+        <include refid="Base_Column_List"></include>
+      </otherwise>
+    </choose>
     from
       tb_item
     <where>
