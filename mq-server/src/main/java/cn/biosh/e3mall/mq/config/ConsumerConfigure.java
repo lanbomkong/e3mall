@@ -1,6 +1,5 @@
 package cn.biosh.e3mall.mq.config;
 
-import cn.biosh.e3mall.mq.properties.ConsumerConfig;
 import java.util.List;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
@@ -10,27 +9,28 @@ import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * @description
  * @date 2019/4/22
  */
 @Configuration
+@Component
 public abstract class ConsumerConfigure {
-
-  @Autowired
-  private ConsumerConfig consumerConfig;
 
   private Logger logger = LoggerFactory.getLogger(ConsumerConfigure.class);
 
-  public void listener(String topic, String tag) throws MQClientException {
-    logger.info("开启消息监听：" + topic + "-->" + tag);
-    logger.info(consumerConfig.toString());
+  @Value("${rocketmq.consumer.registerNamesrvAddr}")
+  private String namesrvAdd;
 
-    DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerConfig.getGroupName());
-    consumer.setNamesrvAddr(consumerConfig.getNamesrvAddr());
+  public void listener(String topic, String tag, String consumerGroup) throws MQClientException {
+    logger.info("开启消息监听：" + topic + "-->" + tag);
+
+    DefaultMQPushConsumer consumer = new DefaultMQPushConsumer(consumerGroup);
+    consumer.setNamesrvAddr(namesrvAdd);
     consumer.subscribe(topic, tag);
     consumer.registerMessageListener(new MessageListenerConcurrently() {
       @Override
@@ -40,7 +40,7 @@ public abstract class ConsumerConfigure {
       }
     });
     consumer.start();
-    logger.info("-------------rocketmq 启动成功！-------------");
+    logger.info("-------------rocketmq 消息监听启动成功！-------------");
   }
 
   public abstract ConsumeConcurrentlyStatus dealBody(List<MessageExt> msgs);

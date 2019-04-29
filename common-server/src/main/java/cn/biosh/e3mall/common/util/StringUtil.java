@@ -31,7 +31,6 @@ public class StringUtil {
     } catch (IOException e) {
       logger.error("inputString read error!");
     }
-    System.out.println(input.toString());
     return input.toString();
   }
 

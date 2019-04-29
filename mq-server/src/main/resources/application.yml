@@ -1,9 +1,6 @@
 rocketmq:
   producer:
-    groupName: ${spring.application.name}
-    namesrvAddr: 192.168.25.129
-    default: false
+    registerGroupName: accountMQProducer
+    registerNamesrvAddr: 127.0.0.1:9876
   consumer:
-    groupName: ${spring.application.name}
-    namesrvAddr: 192.168.25.129
-    default: false
+    registerNamesrvAddr: 127.0.0.1:9876

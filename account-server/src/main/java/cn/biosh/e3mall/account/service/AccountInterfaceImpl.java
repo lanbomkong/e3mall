@@ -9,7 +9,6 @@ import cn.biosh.e3mall.common.util.JsonUtil;
 import cn.biosh.e3mall.common.util.StringUtil;
 import cn.biosh.e3mall.dal.mapper.TbUserMapper;
 import cn.biosh.e3mall.dal.model.TbUser;
-import cn.biosh.e3mall.mq.config.ProducerConfigure;
 import com.alibaba.dubbo.config.annotation.Service;
 import java.util.Date;
 import java.util.HashMap;
@@ -45,7 +44,7 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
   private RedisOperator redisOperator;
 
   @Autowired
-  private ProducerConfigure producerConfigure;
+  private DefaultMQProducer producer;
 
   @Override
   public List<TbUser> getUsers(Map<String, Object> map) {
@@ -68,8 +67,7 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
     userMapper.insertSelective(tbUser);
 
     try {
-      DefaultMQProducer producer = producerConfigure.defaultMQProducer();
-      Message message = new Message("account", "register", tbUser.getEmail().getBytes());
+      Message message = new Message("konglingbiao", "register", "123456" ,JsonUtil.objectToJsonString(tbUser).getBytes());
       producer.send(message, new SendCallback() {
         @Override
         public void onSuccess(SendResult sendResult) {
@@ -83,8 +81,8 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
         }
       });
     } catch (Exception e) {
-//      throw new SystemException(AccountRetStubDetail.ACCOUNT_USER_REGISTER_MQMESSAGE_SEND_FAIL);
       e.printStackTrace();
+      throw new SystemException(AccountRetStubDetail.ACCOUNT_USER_REGISTER_MQMESSAGE_SEND_FAIL);
     }
   }
 

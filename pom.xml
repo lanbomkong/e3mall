@@ -34,6 +34,7 @@
 		<fastdfs.version>1.26.1-RELEASE</fastdfs.version>
 		<pagehelper.version>1.2.10</pagehelper.version>
 		<rocketmq.version>4.3.0</rocketmq.version>
+		<mail.version>1.4.7</mail.version>
 	</properties>
 
 	<build>
