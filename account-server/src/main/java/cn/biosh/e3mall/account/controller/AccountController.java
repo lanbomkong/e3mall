@@ -1,12 +1,11 @@
-package cn.biosh.e3mall.web.controller;
+package cn.biosh.e3mall.account.controller;
 
-import cn.biosh.e3mall.common.dubbo.AccountInterface;
+import cn.biosh.e3mall.account.dto.input.LoginForm;
+import cn.biosh.e3mall.account.dto.input.RegistForm;
+import cn.biosh.e3mall.account.service.AccountInterfaceImpl;
 import cn.biosh.e3mall.common.interfaces.RedisOperator;
 import cn.biosh.e3mall.common.util.Condition;
 import cn.biosh.e3mall.dal.model.TbUser;
-import cn.biosh.e3mall.web.dto.input.LoginForm;
-import cn.biosh.e3mall.web.dto.input.account.RegistForm;
-import com.alibaba.dubbo.config.annotation.Reference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,8 +32,9 @@ public class AccountController {
   @Autowired
   private RedisOperator redisOperator;
 
-  @Reference(version = "1.0.0")
-  private AccountInterface accountInterface;
+//  @Reference(version = "1.0.0")
+  @Autowired
+  private AccountInterfaceImpl accountInterface;
 
   @PostMapping("/login")
   public String userLogin(@RequestBody @Valid LoginForm form) {

@@ -1,6 +1,6 @@
-rocketmq:
-  producer:
-    registerGroupName: accountMQProducer
-    registerNamesrvAddr: 127.0.0.1:9876
-  consumer:
-    registerNamesrvAddr: 127.0.0.1:9876
+spring:
+  rabbitmq:
+    host: 106.12.139.244
+    port: 5672
+    username: admin
+    password: admin

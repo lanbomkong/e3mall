@@ -1,6 +1,5 @@
-package cn.biosh.e3mall.web.exception;
+package cn.biosh.e3mall.common.exception;
 
-import cn.biosh.e3mall.common.exception.SysStubInfo;
 import cn.biosh.e3mall.common.dubbo.SystemException;
 import cn.biosh.e3mall.common.util.ResultView;
 import java.util.Collections;

@@ -9,15 +9,11 @@ import cn.biosh.e3mall.common.util.JsonUtil;
 import cn.biosh.e3mall.common.util.StringUtil;
 import cn.biosh.e3mall.dal.mapper.TbUserMapper;
 import cn.biosh.e3mall.dal.model.TbUser;
-import com.alibaba.dubbo.config.annotation.Service;
+import cn.biosh.e3mall.mq.config.Producer;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.rocketmq.client.producer.DefaultMQProducer;
-import org.apache.rocketmq.client.producer.SendCallback;
-import org.apache.rocketmq.client.producer.SendResult;
-import org.apache.rocketmq.common.message.Message;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +27,7 @@ import org.springframework.util.StringUtils;
  * @date 2019/4/15
  */
 @Component
-@Service(interfaceClass = AccountInterface.class, version = "1.0.0")
+//@Service(interfaceClass = AccountInterface.class, version = "1.0.0")
 public class AccountInterfaceImpl implements AccountInterface<TbUser> {
 
   private Logger logger = LoggerFactory.getLogger(AccountInterfaceImpl.class);
@@ -44,7 +40,7 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
   private RedisOperator redisOperator;
 
   @Autowired
-  private DefaultMQProducer producer;
+  private Producer producer;
 
   @Override
   public List<TbUser> getUsers(Map<String, Object> map) {
@@ -66,24 +62,28 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
     tbUser.setCreated(new Date());
     userMapper.insertSelective(tbUser);
 
-    try {
-      Message message = new Message("konglingbiao", "register", "123456" ,JsonUtil.objectToJsonString(tbUser).getBytes());
-      producer.send(message, new SendCallback() {
-        @Override
-        public void onSuccess(SendResult sendResult) {
-          logger.info("消息发送成功！");
-          logger.info(JsonUtil.objectToJsonString(sendResult));
-        }
+    producer.sendMessage("testMessage", JsonUtil.objectToJsonString(tbUser));
+//    try {
+//      Message message = new Message("konglingbiao", "register", "123456" ,
+//          JsonUtil.objectToJsonString(tbUser).getBytes());
+//      producer.send(message, new SendCallback() {
+//        @Override
+//        public void onSuccess(SendResult sendResult) {
+//          logger.info("消息发送成功！");
+//          logger.info(JsonUtil.objectToJsonString(sendResult));
+//        }
+//
+//        @Override
+//        public void onException(Throwable throwable) {
+//          logger.error("消息发送失败：" + throwable);
+//        }
+//      });
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//      throw new SystemException(AccountRetStubDetail.ACCOUNT_USER_REGISTER_MQMESSAGE_SEND_FAIL);
+//    }
 
-        @Override
-        public void onException(Throwable throwable) {
-          logger.error("消息发送失败：" + throwable);
-        }
-      });
-    } catch (Exception e) {
-      e.printStackTrace();
-      throw new SystemException(AccountRetStubDetail.ACCOUNT_USER_REGISTER_MQMESSAGE_SEND_FAIL);
-    }
+
   }
 
   @Override
@@ -109,7 +109,8 @@ public class AccountInterfaceImpl implements AccountInterface<TbUser> {
   /**
    * 校验用户是否存在
    *
-   * @param ：username 可以是username、phone、email中的一个 password 密码
+   * @param ：username 可以是username、phone、email中的一个
+   *          password 密码
    */
   public Long checkUserExit(String username) {
     Map<String, Object> map = new HashMap<>();
