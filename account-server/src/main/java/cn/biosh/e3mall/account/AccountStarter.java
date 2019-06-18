@@ -1,6 +1,5 @@
 package cn.biosh.e3mall.account;
 
-import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication
 @MapperScan(basePackages = {"cn.biosh.e3mall.dal.mapper"})
-@EnableDubboConfiguration
+//@EnableDubboConfiguration
 @ComponentScan(basePackages = {"cn.biosh.e3mall.*"})
 public class AccountStarter {
 

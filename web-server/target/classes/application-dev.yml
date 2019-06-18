@@ -10,7 +10,7 @@ spring:
     database: 0
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://106.12.139.244:3306/e3mall?autoReconnect=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&serverTimezone=GMT%2B&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://106.12.139.244:3306/lanbomkong?autoReconnect=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&serverTimezone=GMT%2B&zeroDateTimeBehavior=convertToNull
     name: root
     password: "root"
   dubbo:
@@ -25,3 +25,6 @@ fdfs:
   connect-timeout: 600
   pool:
     jmx-enabled: false
+security:
+  basic:
+    enabled: false
