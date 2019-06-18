@@ -5,7 +5,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://106.12.139.244:3306/lanbomkong?autoReconnect=true&useSSL=false&characterEncoding=UTF-8&useUnicode=true&serverTimezone=GMT%2B8&zeroDateTimeBehavior=convertToNull
     username: root
-    password: "root"
+    password: "@JustKong."
   dubbo:
     registry:
       protocol: zookeeper
@@ -26,7 +26,7 @@ spring:
 #        - 192.168.25.134:7006
     host: 106.12.139.244
     port: 6379
-    password: kong
+    password: "@JustKong."
     timeout: 2000
     database: 0
   rabbitmq:
